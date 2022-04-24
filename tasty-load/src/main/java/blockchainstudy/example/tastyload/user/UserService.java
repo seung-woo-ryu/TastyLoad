@@ -1,4 +1,2 @@
-package blockchainstudy.example.tastyload.user;
-
-public class UserService {
+package blockchainstudy.example.tastyload.user;public class UserService {
 }
