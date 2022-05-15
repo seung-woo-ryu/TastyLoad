@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component("userDetailService")
-public class UserService implements UserDetailsService {
+@Component("userDetailsService")
+public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -24,13 +24,13 @@ public class UserService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        return userRepository.findOneWithRolesByUserId(userId)
+        UserDetails userDetails = userRepository.findOneWithRolesByUserId(userId)
                 .map(user -> createUser(user))
                 .orElseThrow(() -> new UsernameNotFoundException(userId + " -> DB에서 찾을 수 없습니다."));
+        return userDetails;
     }
 
     private org.springframework.security.core.userdetails.User createUser( User user) {
-
         List<GrantedAuthority> grantedAuthorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
                 .collect(Collectors.toList());
