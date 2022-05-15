@@ -1,21 +1,16 @@
 package blockchainstudy.example.tastyload.config;
 
-import blockchainstudy.example.tastyload.jwt.JwtAccessDeniedHandler;
-import blockchainstudy.example.tastyload.jwt.JwtAuthenticationEntryPoint;
-import blockchainstudy.example.tastyload.jwt.JwtSecurityConfig;
-import blockchainstudy.example.tastyload.jwt.JwtTokenProvider;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.filter.CorsFilter;
+
+import blockchainstudy.example.tastyload.jwt.JwtAccessDeniedHandler;
+import blockchainstudy.example.tastyload.jwt.JwtAuthenticationEntryPoint;
+import blockchainstudy.example.tastyload.jwt.JwtSecurityConfig;
+import blockchainstudy.example.tastyload.jwt.JwtTokenProvider;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

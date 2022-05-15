@@ -1,10 +1,8 @@
-package com.github.prgrms.errors;
+package blockchainstudy.example.tastyload.errors;
 
-import blockchainstudy.example.tastyload.errors.ContentNullException;
-import blockchainstudy.example.tastyload.errors.DuplicatedUserException;
-import blockchainstudy.example.tastyload.errors.NotFoundException;
-import blockchainstudy.example.tastyload.errors.UnauthorizedException;
-import blockchainstudy.example.tastyload.util.ApiUtils;
+import static blockchainstudy.example.tastyload.util.ApiUtils.error;
+
+import javax.validation.ConstraintViolationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +16,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import javax.validation.ConstraintViolationException;
-
-import static blockchainstudy.example.tastyload.util.ApiUtils.error;
+import blockchainstudy.example.tastyload.util.ApiUtils;
 
 @ControllerAdvice
 public class GeneralExceptionHandler {
