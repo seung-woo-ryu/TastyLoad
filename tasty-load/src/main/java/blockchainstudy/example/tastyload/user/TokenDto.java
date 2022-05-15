@@ -1,2 +1,13 @@
-package blockchainstudy.example.tastyload.user;public class TokenDto {
+package blockchainstudy.example.tastyload.user;
+
+import lombok.*;
+
+@Getter @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class TokenDto {
+
+    private String token;
 }
+

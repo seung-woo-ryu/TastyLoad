@@ -1,17 +1,18 @@
 DROP TABLE IF EXISTS reviews CASCADE;
 DROP TABLE IF EXISTS restaurants CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users (
   user_uid      bigint NOT NULL AUTO_INCREMENT, --사용자 PK
-  id            varchar(10) NOT NULL,           --사용자 아이디
+  user_id       varchar(10) NOT NULL,           --사용자 아이디
   name          varchar(10) NOT NULL,           --사용자 이름
   email         varchar(50) NOT NULL,           --사용자 이메일
   passwd        varchar(80) NOT NULL,           --사용자 비밀번호
   joined_date   date NOT NULL DEFAULT CURRENT_TIMESTAMP(), --가입 날짜
-  PRIMARY KEY (user_uid),
-  CONSTRAINT unq_user UNIQUE (id,email)
+
+  PRIMARY KEY (user_id),
+  CONSTRAINT unq_user UNIQUE (user_id,email)
 );
 
 CREATE TABLE restaurants (
@@ -21,6 +22,24 @@ CREATE TABLE restaurants (
 
   PRIMARY KEY (restaurant_uid)
 );
+
+CREATE TABLE roles (
+  role_name                varchar(10) NOT NULL,           --role 이름
+
+  PRIMARY KEY (role_name),
+  CONSTRAINT unq_role_name UNIQUE (role_name)
+);
+
+CREATE TABLE users_roles (
+  user_id                  varchar(10) NOT NULL,
+  role_name                varchar(10) NOT NULL,
+
+  PRIMARY KEY(user_id, role_name),
+
+  CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_roles FOREIGN KEY (role_name) REFERENCES roles (role_name) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 
 CREATE TABLE reviews (
   review_uid         bigint NOT NULL AUTO_INCREMENT, --리뷰 PK
