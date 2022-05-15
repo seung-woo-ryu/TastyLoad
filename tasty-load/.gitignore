@@ -38,3 +38,5 @@ out/
 
 ### secret key ###
 secret-key.txt
+
+**/.bloop/*
